@@ -1,0 +1,27 @@
+apply from: 'http://dl.bintray.com/scalding/generic/waroverlay.gradle'
+
+repositories {
+    mavenCentral artifactUrls: ['http://developer.jasig.org/repo/content/groups/m2-legacy/', 'http://central.maven.org/maven2/']
+    mavenCentral artifactUrls: ['https://oss.sonatype.org/content/repositories/snapshots/']
+    maven { url 'http://oss.sonatype.org/content/repositories/releases/' }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    runtime("org.apereo.cas:cas-server-webapp:${project.'cas.version'}@war") {
+        transitive = true
+    }
+}
+
+war {
+    baseName 'cas'
+}
+
+task explodeWar(type: Copy) {
+    group = "build"
+    description = "explode the cas.war"
+    from zipTree(project.war.outputs.files.singleFile)
+    into "${buildDir}/cas"
+}
