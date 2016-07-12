@@ -1,16 +1,16 @@
 apply from: 'http://dl.bintray.com/scalding/generic/waroverlay.gradle'
 
 repositories {
-    mavenCentral artifactUrls: ['http://developer.jasig.org/repo/content/groups/m2-legacy/', 'http://central.maven.org/maven2/']
-    mavenCentral artifactUrls: ['https://oss.sonatype.org/content/repositories/snapshots/']
+    jcenter()
     maven { url 'http://oss.sonatype.org/content/repositories/releases/' }
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    runtime("org.apereo.cas:cas-server-webapp:${project.'cas.version'}@war") {
+    runtime("org.apereo.cas:cas-server-webapp:5.0.0.M3-SNAPSHOT@war") {
         transitive = true
     }
 }
